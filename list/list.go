@@ -110,6 +110,6 @@ type ListNode[T any] struct {
 	next  *ListNode[T]
 }
 
-func (n *ListNode[T]) Value() T {
+func (n ListNode[T]) Value() T {
 	return n.value
 }
