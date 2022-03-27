@@ -5,3 +5,4 @@ Data Structure examples implemented in Go (1.18+)
 | Package | Implementation |
 |--|--|
 | [list](/list/list.go) | Doubly Linked List |
+| [stack](/stack/stack.go) | Stack |
