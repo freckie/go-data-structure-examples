@@ -27,6 +27,9 @@ func TestInSingleGoroutine(t *testing.T) {
 	if l.Begin().Value() != 3 || l.End().Value() != 1 {
 		t.Error("inaccurate values")
 	}
+	if l.At(1).Value() != 2 {
+		t.Error("inaccurate values")
+	}
 
 	l.Clear()
 	if l.head != nil || l.tail != nil || l.len != 0 {

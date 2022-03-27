@@ -14,6 +14,10 @@ func NewList[T any]() *List[T] {
 	}
 }
 
+func (l List[T]) IsEmpty() bool {
+	return l.len == 0
+}
+
 func (l *List[T]) Begin() *ListNode[T] {
 	if l.len == 0 {
 		return nil
@@ -43,6 +47,18 @@ func (l *List[T]) Clear() {
 
 func (l *List[T]) Len() uint {
 	return l.len
+}
+
+func (l List[T]) At(index uint) *ListNode[T] {
+	if l.len == 0 {
+		return nil
+	}
+
+	it := l.head
+	for i := uint(0); i < index; i++ {
+		it = it.next
+	}
+	return it
 }
 
 func (l *List[T]) PushFront(val T) *ListNode[T] {
@@ -112,4 +128,12 @@ type ListNode[T any] struct {
 
 func (n ListNode[T]) Value() T {
 	return n.value
+}
+
+func (n ListNode[T]) Prev() *ListNode[T] {
+	return n.prev
+}
+
+func (n ListNode[T]) Next() *ListNode[T] {
+	return n.next
 }
