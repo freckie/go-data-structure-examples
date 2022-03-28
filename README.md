@@ -6,3 +6,4 @@ Data Structure examples implemented in Go (1.18+)
 |--|--|
 | [list](/list/list.go) | Doubly Linked List |
 | [stack](/stack/stack.go) | Stack |
+| [list queue](/queue/listqueue.go) | Queue - Linked List Implementation |
