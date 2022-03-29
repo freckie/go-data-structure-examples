@@ -32,17 +32,20 @@ func (s *ThreadSafeStack[T]) Push(val T) {
 	}
 
 	s.Lock()
-	if s.top == nil {
-		s.top = node
-	} else {
+	defer s.Unlock()
+
+	if s.len != 0 {
 		node.prev = s.top
-		s.top = node
 	}
+	s.top = node
 	s.len++
-	s.Unlock()
 }
 
 func (s *ThreadSafeStack[T]) Pop() *ThreadSafeStackNode[T] {
+	if s.len == 0 {
+		return nil
+	}
+
 	s.Lock()
 	defer s.Unlock()
 
@@ -53,12 +56,6 @@ func (s *ThreadSafeStack[T]) Pop() *ThreadSafeStackNode[T] {
 }
 
 func (s *ThreadSafeStack[T]) Top() *ThreadSafeStackNode[T] {
-	s.RLock()
-	defer s.RUnlock()
-
-	if s.len == 0 {
-		return nil
-	}
 	return s.top
 }
 

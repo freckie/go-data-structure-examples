@@ -26,12 +26,10 @@ func (s *Stack[T]) Push(val T) {
 		prev:  nil,
 	}
 
-	if s.top == nil {
-		s.top = node
-	} else {
+	if s.len != 0 {
 		node.prev = s.top
-		s.top = node
 	}
+	s.top = node
 	s.len++
 }
 
